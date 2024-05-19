@@ -1,10 +1,10 @@
 let fondo;
 let x;
 let y;
-let rojo = 220;
-let verde = 220;
-let azul = 220;
-let opasidad = 1;
+let rojo = [4];
+let verde = [4];
+let azul = [4];
+let opasidad;
 let fondos = [5];
 
 function preload(){
@@ -15,54 +15,79 @@ function preload(){
 
 function setup() {
   createCanvas(455, 600);
+  rojo[1] = 220;
+  verde [1] = 220;
+  azul [1] = 220;
+  rojo [2] = 20;
+  verde [2] = 20;
+  azul [2] = 20;
+  rojo [3] = 141;
+  verde [3] = 141;
+  azul [3] = 141;
+  rojo [4] = 59;
+  verde [4] = 59;
+  opasidad = 1;
 }
 
 function draw() {
   x = mouseX;
   y = mouseY;
-  background(0);
-  if (opasidad > -1 & mouseX < width & mouseY < height){
+
+  if (mouseIsPressed == false){
+
+    background(0); 
+    push();
+    tint(0,0,0);
+    image(fondos[1],0,0);
+    pop();
+
+    if (opasidad > -1 & mouseX < width & mouseY < height){
       opasidad = mouseX*0.5;
-    } 
-  if (mouseY > -1 & mouseY < height & mouseX < width){
-    rojo = mouseY*0.35;
-  }
+    }
 
-  if (mouseY > -1 & mouseY < height & mouseX < width){
-    verde = mouseY*0.35;
-  }
-
-  if (mouseY > -1 & mouseY < height & mouseX < width){
-    azul = mouseY*0.35;
-  }
-
-  push();
-  tint(0,0,0);
-  image(fondos[1],0,0);
-  pop();
+    if (mouseY > -1 & mouseY < height & mouseX < width){
+      rojo [1] = mouseY*0.35;
+    }
+  
+    if (mouseY > -1 & mouseY < height & mouseX < width){
+      verde [1] = mouseY*0.35;
+    }
+  
+    if (mouseY > -1 & mouseY < height & mouseX < width){
+      azul [1] = mouseY*0.35;
+    }
 
   push();
-  tint(rojo, 33, 70, opasidad);
+  tint(rojo [1], verde [2], azul [3], opasidad);
   image( fondos[2], 0,0);
   pop();
 
   push();
-  tint(63, 103, azul, opasidad);
+  tint(rojo [2], verde [3], azul [1], opasidad);
   image( fondos[4], 0,0);
   pop();
 
   push();
-  tint(90, verde, 12, opasidad);
+  tint(rojo [3], verde [1], azul [2], opasidad);
   image( fondos[3], 0,0);
   pop();
 
   push();
-  tint(24, azul, 155, opasidad);
+  tint(rojo [4], azul [1], verde [4], opasidad);
   image( fondos[5], 0,0);
   pop();
 
-  print (rojo, azul, verde);
-  print (opasidad)
-  
-}
+  } else if (mouseIsPressed==true) {
+    for (let i = 2; i < 6; i++) {
+      image( fondos[i], 0,0);
+    }
+    rojo [3] = random(0, 220);
+    verde [3] = random(0, 220);
+    azul [3] = random(0, 220);
+    rojo [4] = random (0, 220);
+    opasidad = 1;
+    print (opasidad)
+  } 
 
+  print (mouseIsPressed);
+}
